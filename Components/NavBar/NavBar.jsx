@@ -25,47 +25,45 @@ function NavBar() {
 	return (
 		<div className={Style.NavBar}>
 			<div className={Style.NavBar_box}>
-
-			<div className={Style.NavBar_box_left}>
-				<div className={Style.NavBar_box_left_img}>
-					<Image src={images.uniswap} alt='logo' width={50} height={50} />
-				</div>
-				<div className={Style.NavBar_box_left_menu}>
-					{menuItems.map((el, i) => (
-						<Link
-							key={i + 1}
-							href={{ pathname: `${el.name}`, query: `${el.link}` }}
-						>
-							<p className={Style.NavBar_box_left_menu_item}>{el.name}</p>
-						</Link>
-					))}
-				</div>
-			</div>
-			<div className={Style.NavBar_box_middle}>
-				<div className={Style.NavBar_box_middle_search}>
-					<div className={Style.Navbar_box_middle_search_img}>
-						<Image src={images.search} alt="search" width={20} height={20}/>
+				<div className={Style.NavBar_box_left}>
+					<div className={Style.NavBar_box_left_img}>
+						<Image src={images.uniswap} alt='logo' width={50} height={50} />
 					</div>
-					<input type="text" placeholder='Search Tokens' />
-				</div>
-			</div>
-			<div className={Style.NavBar_box_right}>
-				<div className={Style.NavBar_box_right_box}>
-					<div className={Style.Navbar_box_right_box_img}>
-						<Image src={images.ether}  alt='network' height={30} width={30}/>
+					<div className={Style.NavBar_box_left_menu}>
+						{menuItems.map((el, i) => (
+							<Link
+								key={i + 1}
+								href={{ pathname: `${el.name}`, query: `${el.link}` }}
+							>
+								<p className={Style.NavBar_box_left_menu_item}>{el.name}</p>
+							</Link>
+						))}
 					</div>
-					<p>Network Name</p>
 				</div>
-				<button onClick={() => setOpenModel(true)}>Address</button>
+				<div className={Style.NavBar_box_middle}>
+					<div className={Style.NavBar_box_middle_search}>
+						<div className={Style.Navbar_box_middle_search_img}>
+							<Image src={images.search} alt='search' width={20} height={20} />
+						</div>
+						<input type='text' placeholder='Search Tokens' />
+					</div>
+				</div>
+				<div className={Style.NavBar_box_right}>
+					<div className={Style.NavBar_box_right_box}>
+						<div className={Style.Navbar_box_right_box_img}>
+							<Image src={images.ether} alt='network' height={30} width={30} />
+						</div>
+						<p onClick={() => setOpenTokenBox(true)}>Network Name</p>
+					</div>
+					<button onClick={() => setOpenModel(true)}>Address</button>
 					{openModel && (
-						<Model setOpenModel={setOpenModel} connectWallet="Connect"/>
+						<Model setOpenModel={setOpenModel} connectWallet='Connect' />
 					)}
-
+				</div>
 			</div>
-					</div>
-					{!openTokenBox && (
-						<TokenList tokenDate="hey" setOpenTokenBox={setOpenTokenBox}/>
-					)}
+			{openTokenBox && (
+				<TokenList tokenDate='hey' setOpenTokenBox={setOpenTokenBox} />
+			)}
 		</div>
 	)
 }
